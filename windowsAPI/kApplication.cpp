@@ -1,9 +1,20 @@
 #include "kApplication.h"
-
+#include "kSceneManager.h"
 
 namespace k
 {
-	Application Application::mInstance;
+	void Application::Initialize(WindowData data)
+	{
+		mWindowData = data;
+		mWindowData.hdc = GetDC(data.hWnd);
+
+		SceneManager::Initialize();
+	}
+	void Application::Tick() // update
+	{
+		SceneManager::Tick();
+		SceneManager::Render(mWindowData.hdc);
+	}
 
 	Application::Application()
 	{
@@ -11,14 +22,8 @@ namespace k
 	}
 	Application::~Application()
 	{
+		SceneManager::Reelease();
+
 		ReleaseDC(mWindowData.hWnd, mWindowData.hdc);
-	}
-	void Application::Initialize(WindowData data)
-	{
-		mWindowData = data;
-		mWindowData.hdc = GetDC(data.hWnd);
-	}
-	void Application::Tick()
-	{
 	}
 }

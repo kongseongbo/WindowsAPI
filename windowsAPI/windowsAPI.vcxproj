@@ -128,15 +128,28 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Common.h" />
+    <ClInclude Include="def.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="kGameObject.h" />
     <ClInclude Include="kApplication.h" />
+    <ClInclude Include="kEntity.h" />
+    <ClInclude Include="kLogoScene.h" />
+    <ClInclude Include="kPlayer.h" />
+    <ClInclude Include="kScene.h" />
+    <ClInclude Include="kSceneManager.h" />
     <ClInclude Include="Maths.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="windowsAPI.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="kGameObject.cpp" />
     <ClCompile Include="kApplication.cpp" />
+    <ClCompile Include="kEntity.cpp" />
+    <ClCompile Include="kLogoScene.cpp" />
+    <ClCompile Include="kPlayer.cpp" />
+    <ClCompile Include="kScene.cpp" />
+    <ClCompile Include="kSceneManager.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>

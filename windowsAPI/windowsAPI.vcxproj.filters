@@ -14,6 +14,27 @@
     <Filter Include="Client">
       <UniqueIdentifier>{005708f6-076c-45ec-a0e8-400e06686643}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\Manager">
+      <UniqueIdentifier>{79b5e659-5daf-452a-b4d8-18760a14f262}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\GameObject">
+      <UniqueIdentifier>{aa5304cd-65ab-48f4-90e9-6a2da1d84089}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Scene">
+      <UniqueIdentifier>{e31efacc-9a13-443c-91bf-97bbe55f8c22}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Common">
+      <UniqueIdentifier>{9d246391-2854-4e92-ad4d-7310a05dbdca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\High Level Interface">
+      <UniqueIdentifier>{4a9eb100-ef4d-4e64-8299-0a26a92db89c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\Scene\Base">
+      <UniqueIdentifier>{d451ee36-e647-415f-be12-a97addde710a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\GameObject\Base">
+      <UniqueIdentifier>{af3a6339-98dc-45a6-a530-4a07eead447b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -28,14 +49,35 @@
     <ClInclude Include="windowsAPI.h">
       <Filter>main</Filter>
     </ClInclude>
-    <ClInclude Include="kApplication.h">
-      <Filter>Engine</Filter>
+    <ClInclude Include="kSceneManager.h">
+      <Filter>Engine\Manager</Filter>
     </ClInclude>
-    <ClInclude Include="Common.h">
-      <Filter>Engine</Filter>
+    <ClInclude Include="kLogoScene.h">
+      <Filter>Engine\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="kEntity.h">
+      <Filter>Engine\Common</Filter>
     </ClInclude>
     <ClInclude Include="Maths.h">
-      <Filter>Engine</Filter>
+      <Filter>Engine\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="kApplication.h">
+      <Filter>Engine\High Level Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="def.h">
+      <Filter>Engine\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Common.h">
+      <Filter>Engine\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="kScene.h">
+      <Filter>Engine\Scene\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="kGameObject.h">
+      <Filter>Engine\GameObject\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="kPlayer.h">
+      <Filter>Engine\GameObject</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -55,8 +97,26 @@
     <ClCompile Include="main.cpp">
       <Filter>main</Filter>
     </ClCompile>
+    <ClCompile Include="kSceneManager.cpp">
+      <Filter>Engine\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="kLogoScene.cpp">
+      <Filter>Engine\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="kEntity.cpp">
+      <Filter>Engine\Common</Filter>
+    </ClCompile>
     <ClCompile Include="kApplication.cpp">
-      <Filter>Engine</Filter>
+      <Filter>Engine\High Level Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="kScene.cpp">
+      <Filter>Engine\Scene\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="kGameObject.cpp">
+      <Filter>Engine\GameObject\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="kPlayer.cpp">
+      <Filter>Engine\GameObject</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

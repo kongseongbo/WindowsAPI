@@ -60,7 +60,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     //GetMessage : 프로세스에 발생한 메세지를 메세지 큐에서 꺼내옴
     //메세지가 있을때만 메세지를 꺼내온다.
-    //메세지 case 함수
+    //메세지 case 함수를 호출해준다.
 
     //PeekMessage : 
     // 발생한 메세지를 가져 올때 메세지큐에서 따로 제거해줘야한다.
@@ -84,7 +84,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         else
         {
             //게임 실행
-            k::Application().GetInstance().Tick();
+            k::Application::GetInstance().Tick();
+            
         }
 
     }
@@ -222,7 +223,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) 
             PAINTSTRUCT ps;
             HDC hdc = BeginPaint(hWnd, &ps);
 
-            // 스톡 오브젝트
+            // 스톡 오브젝트 : 윈도우에서 기본적으로 제공하는 GDI오브젝트
             // 화면 지우기
             HBRUSH hClearBrush = (HBRUSH)GetStockObject(GRAY_BRUSH);
             HBRUSH oldClearBrush = (HBRUSH)SelectObject(hdc, hClearBrush);

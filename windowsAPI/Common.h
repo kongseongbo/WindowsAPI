@@ -8,15 +8,14 @@
 #include <map>
 
 #include "Maths.h"
-
-//using  Pos = POINT; // == typedef Pos = POINT;
+#include "def.h"
 
 struct WindowData
 {
-	HWND hWnd;
-	HDC hdc;
-	UINT height;
-	UINT width;
+	HWND hWnd; // 윈도우의 핸들
+	HDC hdc; 
+	UINT height; // 32bit unsigned int
+	UINT width; 
 
 	void clear()
 	{
