@@ -4,28 +4,25 @@
 
 namespace k
 {
-	class GameObject; // 전방선언
+	class GameObject;
 	class Scene : public Entity
 	{
-	public :
+	public:
 		Scene();
-		virtual ~Scene(); // 소멸자에 virtual을 안붙여주면 찾아가지못한다.
+		virtual ~Scene();
 
-		virtual void Initialize(); 
-		virtual void Tick(); // update
+		virtual void Initialize();
+		virtual void Tick();
 		virtual void Render(HDC hdc);
 
-		void AddGameObject(GameObject* object);
-		
+		virtual void Enter(); // 씬이 변경될때마다
+		virtual void Exit();
+
+		void AddGameObject(GameObject* object, eColliderLayer type);
+
+		std::vector<GameObject*>& GetGameObjects(eColliderLayer type) { return mObjects[(UINT)type]; }
+
 	private:
-		std::vector<GameObject*> mObject;
-
-
+		std::vector<std::vector<GameObject*>> mObjects;
 	};
-
-
 }
-
-
-
-

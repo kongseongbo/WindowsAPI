@@ -28,6 +28,9 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     UNREFERENCED_PARAMETER(hPrevInstance);
     UNREFERENCED_PARAMETER(lpCmdLine);
 
+
+    _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_CHECK_ALWAYS_DF);
+
     // 1. wndclass 정의 윈도의 기반(여러가지 속성)이 되는 클래스 정의
     // 
     // 2. 메모리상에 윈도우를 할당 CreateWindow
@@ -142,8 +145,8 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    hInst = hInstance; // 인스턴스 핸들을 전역 변수에 저장합니다.
 
    WindowData windowData;
-   windowData.width = 1920;
-   windowData.height = 1080;
+   windowData.width = 1600;
+   windowData.height = 900;
 
    HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
       CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
@@ -208,7 +211,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) 
         
   
         // 무효화 영역 발생시키기( WM_PAINT 메시지를 호출해주겠다.)
-        InvalidateRect(hWnd, nullptr, false);
+        //InvalidateRect(hWnd, nullptr, false);
     }
     break;
 
@@ -228,7 +231,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) 
             HBRUSH hClearBrush = (HBRUSH)GetStockObject(GRAY_BRUSH);
             HBRUSH oldClearBrush = (HBRUSH)SelectObject(hdc, hClearBrush);
             Rectangle(hdc, -1, -1, 1921, 1081);
-
+            SelectObject(hdc, oldClearBrush);
             
             // TODO: 여기에 hdc를 사용하는 그리기 코드를 추가합니다...
             EndPaint(hWnd, &ps);

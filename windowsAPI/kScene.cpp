@@ -5,44 +5,75 @@ namespace k
 {
 	Scene::Scene()
 	{
+		mObjects.resize(_COLLIDER_LAYER);
 	}
 
 	Scene::~Scene()
 	{
-		for (size_t i = 0; i < mObject.size(); i++)
+		for (size_t y = 0; y < _COLLIDER_LAYER; y++)
 		{
-			delete mObject[i];
+			for (size_t x = 0; x < mObjects[y].size(); x++)
+			{
+				delete mObjects[y][x];
+				mObjects[y][x] = nullptr;
+			}
 		}
 	}
 
 	void Scene::Initialize()
 	{
-		for (size_t i = 0; i < mObject.size(); i++)
+
+		for (size_t y = 0; y < _COLLIDER_LAYER; y++)
 		{
-			mObject[i]->Initialize();
+			for (size_t x = 0; x < mObjects[y].size(); x++)
+			{
+				if(mObjects[y][x] != nullptr)
+					mObjects[y][x]->Initialize();
+			}
 		}
 	}
 
 	void Scene::Tick()
 	{
-		for (size_t i = 0; i < mObject.size(); i++)
+		for (size_t y = 0; y < _COLLIDER_LAYER; y++)
 		{
-			mObject[i]->Tick();
+			for (size_t x = 0; x < mObjects[y].size(); x++)
+			{
+				if (mObjects[y][x] != nullptr)
+					mObjects[y][x]->Tick();
+			}
 		}
+
 	}
 
 	void Scene::Render(HDC hdc)
 	{
-
+		for (size_t y = 0; y < _COLLIDER_LAYER; y++)
+		{
+			for (size_t x = 0; x < mObjects[y].size(); x++)
+			{
+				if (mObjects[y][x] != nullptr)
+					mObjects[y][x]->Render(hdc);
+			}
+		}
 	}
 
-	void Scene::AddGameObject(GameObject* object)
+	void Scene::Enter()
+	{
+	}
+
+	void Scene::Exit()
+	{
+	}
+
+	void Scene::AddGameObject(GameObject* object, eColliderLayer type)
 	{
 		if (object == nullptr)
 			return;
-
-		mObject.push_back(object);
+		
+		mObjects[(UINT)type].push_back(object);
 	}
+
 }
 
 
