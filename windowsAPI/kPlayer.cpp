@@ -8,7 +8,7 @@
 #include "kResources.h"
 #include "kAnimator.h"
 #include "kCollider.h"
-
+#include "kCamera.h"
 
 namespace k
 {

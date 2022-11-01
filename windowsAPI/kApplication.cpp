@@ -4,6 +4,8 @@
 #include "kInput.h"
 #include "kResources.h"
 #include "kCollisionManager.h"
+#include "kCamera.h"
+
 
 namespace k
 {
@@ -14,13 +16,14 @@ namespace k
 		Time::Initialize();
 		Input::Initialize();
 		SceneManager::Initialize();
-		
 	}
 	void Application::Tick()
 	{
 		Time::Tick();
 		Input::Tick();
+		Camera::Initialize();
 
+		Camera::Tick();
 		SceneManager::Tick();
 		CollisionManager::Tick();
 

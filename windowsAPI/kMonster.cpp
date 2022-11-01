@@ -38,13 +38,13 @@ namespace k
 
 		SetPos(pos);
 
-		mTime += Time::DeltaTime();
+		/*mTime += Time::DeltaTime();
 		if (mTime > 5.0f)
 		{
 			pos.x -= 30;
 			SetPos(pos);
 			mTime = 0.0f;
-		}
+		}*/
 
 	}
 	void Monster::Render(HDC hdc)

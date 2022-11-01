@@ -135,6 +135,8 @@ namespace k
 
 	bool CollisionManager::Intersect(Collider* left, Collider* right)
 	{
+		// 충돌시 여기서 삭제
+		
 		Vector2 leftPos = left->GetPos();
 		Vector2 leftScale = left->GetScale();
 

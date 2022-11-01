@@ -14,7 +14,7 @@ namespace k
 		Component() = delete; // 기본생성자 못만들게 delete
 		virtual ~Component();
 
-		virtual void Tick() = 0;
+		virtual void Tick();
 		virtual void Render(HDC hdc);
 
 		GameObject* GetOwner() { return mOwner; }

@@ -1,4 +1,5 @@
 #include "kComponent.h"
+#include "kGameObject.h"
 
 namespace k
 {
@@ -11,6 +12,11 @@ namespace k
 
 	Component::~Component()
 	{
+	}
+
+	void Component::Tick()
+	{
+		
 	}
 
 	void Component::Render(HDC hdc)

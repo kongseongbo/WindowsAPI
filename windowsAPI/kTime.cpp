@@ -1,5 +1,5 @@
 #include "kTime.h"
-
+#include "kApplication.h"
 
 namespace k
 {
@@ -32,16 +32,22 @@ namespace k
 	}
 	void Time::Render(HDC hdc)
 	{
-		wchar_t szFloat[50] = {};
 		//텔타타임
 		//한프레임 도는 동안 총 걸린시간
 
 		//30프레임 이하 디버깅모드 작업을 할때
-		float fps = 1.0f / mDeltaTime;
-		
-		swprintf_s(szFloat, 50, L"fps : %f", fps);
-		int strLen = wcsnlen_s(szFloat, 50);
-		
-		TextOut(hdc, 10, 10, szFloat, strLen); // 프레임을 많이 먹는다
+
+		mTime += Time::DeltaTime();
+		if (mTime > 1.0f)
+		{
+			wchar_t szFloat[50] = {};
+			float fps = 1.0f / mDeltaTime;
+			swprintf_s(szFloat, 50, L"fps : %f", fps);
+
+			HWND hWnd = Application::GetInstance().GetWindowData().hWnd;
+
+			SetWindowText(hWnd, szFloat);
+			mTime = 0.0f;
+		}
 	}
 }
