@@ -51,8 +51,14 @@ enum class eColliderLayer
 	Monster,
 	Monster_Projecttile,
 
-	UI = _COLLIDER_LAYER -1,
+	BackPack,
+	UI = _COLLIDER_LAYER - 1,
 	End = _COLLIDER_LAYER,
+};
+
+enum class eCameraEffect
+{
+	None,
 };
 
 //불규칙적인 숫자를 이용하기 위해 사용

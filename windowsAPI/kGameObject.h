@@ -43,7 +43,7 @@ namespace k
 			}
 			return nullptr;
 		}
-		
+
 	private:
 		std::vector<Component*> mComponents;
 		Vector2 mPos;

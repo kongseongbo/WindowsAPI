@@ -1,6 +1,7 @@
 #include "kMissile.h"
 #include "kTime.h"
 #include "kCollider.h"
+#include "kCamera.h"
 
 namespace k
 {
@@ -14,7 +15,7 @@ namespace k
 		col->SetScale(Vector2(20.0f, 20.0f));
 
 		AddComponent(col);
-
+		Camera::SetTarget(this);
 	}
 
 	Missile::~Missile()
@@ -36,6 +37,8 @@ namespace k
 	{
 		Vector2 pos = GetPos();
 		Vector2 scale = GetScale();
+		pos = Camera::CalculatePos(pos);
+
 		Ellipse(hdc, pos.x - 10, pos.y - 10, pos.x + scale.x, pos.y + scale.y);
 
 		GameObject::Render(hdc);

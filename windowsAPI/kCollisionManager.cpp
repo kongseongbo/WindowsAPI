@@ -58,7 +58,6 @@ namespace k
 		std::vector<GameObject*>& lefts = scene->GetGameObjects(left);
 		std::vector<GameObject*>& rights = scene->GetGameObjects(right);
 
-		// 각각의 레이어들을 전부 체크하면서 충돌여부 확인
 		for (auto leftObject : lefts)
 		{
 			Collider* leftCollider = leftObject->GetComponent<Collider>();
@@ -105,7 +104,6 @@ namespace k
 			{
 				// 최초 한번 충돌
 
-				// 충돌함수를 호출ㅇ해주면된다.
 				// OnCollisionEneter();
 				left->OnCollisionEnter(right);
 				right->OnCollisionEnter(left);
@@ -135,14 +133,16 @@ namespace k
 
 	bool CollisionManager::Intersect(Collider* left, Collider* right)
 	{
-		// 충돌시 여기서 삭제
-		
+		if (left->GetOwner()->IsDeath())
+			return false;
+		if (right->GetOwner()->IsDeath())
+			return false;
+
 		Vector2 leftPos = left->GetPos();
 		Vector2 leftScale = left->GetScale();
 
 		Vector2 rightPos = right->GetPos();
 		Vector2 rightScale = right->GetScale();
-
 
 		if (fabs(leftPos.x - rightPos.x) < fabs(leftScale.x / 2.0f + rightScale.x / 2.0f)
 			&& fabs(leftPos.y - rightPos.y) < fabs(leftScale.y / 2.0f + rightScale.y / 2.0f))

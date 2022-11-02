@@ -1,6 +1,7 @@
 #include "kCollider.h"
 #include "kGameObject.h"
 #include "kApplication.h"
+#include "kCamera.h"
 
 namespace k
 {
@@ -13,16 +14,22 @@ namespace k
 	{
 		mScale = Vector2(100.0f, 100.0f);
 	}
+
 	Collider::~Collider()
 	{
 	}
+
 	void Collider::Tick()
 	{
 		GameObject* owner = GetOwner();
+
 		mPos = owner->GetPos() + mOffset;
 	}
+
 	void Collider::Render(HDC hdc)
 	{
+
+
 		HBRUSH tr = Application::GetInstance().GetBrush(eBrushColor::Transparent);
 		Brush brush(hdc, tr);
 
@@ -35,6 +42,8 @@ namespace k
 		else
 			oldPen = (HPEN)SelectObject(hdc, greenPen);
 
+		mPos = Camera::CalculatePos(mPos);
+
 		Rectangle(hdc, (mPos.x - mScale.x / 2.0f), (mPos.y - mScale.y / 2.0f)
 			, (mPos.x + mScale.x / 2.0f), (mPos.y + mScale.y / 2.0f));
 
@@ -42,15 +51,18 @@ namespace k
 		DeleteObject(redPen);
 		DeleteObject(greenPen);
 	}
+
 	void Collider::OnCollisionEnter(Collider* other)
 	{
 		mCollisionCount++;
 		GetOwner()->OnCollisionEnter(other);
 	}
+
 	void Collider::OnCollisionStay(Collider* other)
 	{
 		GetOwner()->OnCollisionStay(other);
 	}
+
 	void Collider::OnCollisionExit(Collider* other)
 	{
 		mCollisionCount--;

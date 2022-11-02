@@ -3,7 +3,7 @@
 
 
 namespace k
-{	
+{
 	class Collider;
 	class Scene;
 	class CollisionManager

@@ -39,7 +39,10 @@ namespace k
 		{
 			for (size_t x = 0; x < mObjects[y].size(); x++)
 			{
-				if (mObjects[y][x] != nullptr)
+				if (mObjects[y][x] == nullptr)
+					continue;
+				if (mObjects[y][x]->IsDeath())
+					continue;
 					mObjects[y][x]->Tick();
 			}
 		}
@@ -52,8 +55,12 @@ namespace k
 		{
 			for (size_t x = 0; x < mObjects[y].size(); x++)
 			{
-				if (mObjects[y][x] != nullptr)
-					mObjects[y][x]->Render(hdc);
+				if (mObjects[y][x] == nullptr)
+					continue;
+				if (mObjects[y][x]->IsDeath())
+					continue;
+
+				mObjects[y][x]->Render(hdc);
 			}
 		}
 	}

@@ -6,7 +6,7 @@ namespace k
 	// 메인 프로그램이 될 녀석
 	class Application
 	{
-	public :
+	public:
 		static Application& GetInstance() // 싱글턴패턴 동적할당으로 만든 싱글턴패턴은 소멸자가 호출되지 않는다.
 		{
 			static Application mInstance;
@@ -14,7 +14,7 @@ namespace k
 		}
 
 		void Initialize(WindowData data);
-		void Tick(); 
+		void Tick();
 
 		WindowData GetWindowData() { return mWindowData; }
 		HPEN GetPen(ePenColor color) { return mPens[(UINT)color]; }

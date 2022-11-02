@@ -131,6 +131,7 @@
     <ClInclude Include="def.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="kAnimator.h" />
+    <ClInclude Include="kBackPack.h" />
     <ClInclude Include="kBgImageObject.h" />
     <ClInclude Include="kCamera.h" />
     <ClInclude Include="kCollider.h" />
@@ -162,6 +163,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="kAnimator.cpp" />
+    <ClCompile Include="kBackPack.cpp" />
     <ClCompile Include="kBgImageObject.cpp" />
     <ClCompile Include="kCamera.cpp" />
     <ClCompile Include="kCollider.cpp" />

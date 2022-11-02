@@ -6,7 +6,7 @@
 
 namespace k
 {
-	Scene* SceneManager::mScenes[(UINT)eSceneType::Max] ={};
+	Scene* SceneManager::mScenes[(UINT)eSceneType::Max] = {};
 	Scene* SceneManager::mPlayScene = nullptr; // 현재 화면에 나오고 있는 씬
 
 	void SceneManager::Initialize()
@@ -24,7 +24,7 @@ namespace k
 		mScenes[(UINT)eSceneType::End] = new EndScene();
 		mScenes[(UINT)eSceneType::End]->Initialize();
 
-		
+
 		//mPlayScene = mScenes[(UINT)eSceneType::Logo];
 		ChangeSccene(eSceneType::Logo);
 		//업캐스팅
@@ -34,7 +34,7 @@ namespace k
 	{
 		//현재 씬  Tick
 		mPlayScene->Tick();
-		
+
 	}
 	void SceneManager::Render(HDC hdc)
 	{

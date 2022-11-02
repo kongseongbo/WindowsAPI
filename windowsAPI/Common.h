@@ -24,7 +24,7 @@ struct WindowData
 	HDC backBuffer; // 백 그림 담당
 
 	UINT height; // 32bit unsigned int
-	UINT width; 
+	UINT width;
 
 	void clear()
 	{
@@ -79,7 +79,7 @@ public:
 	Brush(HDC hdc, HBRUSH brush)
 		:mHdc(hdc)
 		, mOldBrush(NULL)
-		,mBrush(brush)
+		, mBrush(brush)
 	{
 		mOldBrush = (HBRUSH)SelectObject(mHdc, brush);
 	}

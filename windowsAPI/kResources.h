@@ -70,7 +70,7 @@ namespace k
 
 
 	private:
-		static std::map<std::wstring, Resource*> mResources;
+		static std::map<std::wstring, Resource*> mResources; // 리소스를 다 담고있다.
 
 	};
 }
