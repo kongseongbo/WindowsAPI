@@ -4,6 +4,7 @@
 
 namespace k
 {
+	class Monster;
 	class PlayScene : public Scene
 	{
 	public:
@@ -18,7 +19,7 @@ namespace k
 		virtual void Exit();
 
 	private:
-
+		Monster* mons[2];
 	};
 
 }

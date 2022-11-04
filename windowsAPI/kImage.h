@@ -5,6 +5,8 @@ namespace k
 	class Image : public Resource // 추상클래스 상속
 	{
 	public :
+		static Image* Create(const std::wstring& key, UINT width, UINT height);
+
 		Image();
 		~Image();
 

@@ -7,6 +7,7 @@ namespace k
 {
 	Missile::Missile()
 		: mSpeed(1.0f)
+		, mAliveTime(5.0f)
 	{
 		SetPos({ 100.0f, 100.0f });
 		SetScale({ 20.0f, 20.0f });
@@ -15,7 +16,7 @@ namespace k
 		col->SetScale(Vector2(20.0f, 20.0f));
 
 		AddComponent(col);
-		Camera::SetTarget(this);
+		//Camera::SetTarget(this);
 	}
 
 	Missile::~Missile()
@@ -26,11 +27,15 @@ namespace k
 	{
 		GameObject::Tick();
 
+		mAliveTime -= Time::DeltaTime();
+		if (mAliveTime <= 0.0f)
+		{
+			this->Death();
+		}
+
 		Vector2 pos = GetPos();
 		pos.y -= 500.0f * Time::DeltaTime();
 		SetPos(pos);
-
-
 	}
 
 	void Missile::Render(HDC hdc)

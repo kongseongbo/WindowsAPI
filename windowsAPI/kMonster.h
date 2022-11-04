@@ -9,6 +9,7 @@ namespace k
 	{
 	public:
 		Monster();
+		Monster(Vector2 position);
 		~Monster();
 
 		virtual void Tick() override;

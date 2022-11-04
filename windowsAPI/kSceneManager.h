@@ -10,6 +10,7 @@ namespace k
 		static void Initialize();
 		static void Tick();
 		static void Render(HDC hdc);
+		static void DestroyGameObject();
 		static void Release();
 
 		static void ChangeSccene(eSceneType type);

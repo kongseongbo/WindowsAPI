@@ -18,7 +18,7 @@ namespace k
 
 	private:
 		float mSpeed;
-
+		float mAliveTime;
 	};
 
 }

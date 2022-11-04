@@ -21,7 +21,7 @@ namespace k
 	private:
 		float mSpeed;
 		Image* mImage;
-		int alpha; // 투명도 조절 0 ~ 255
+		//int alpha; // 투명도 조절 0 ~ 255
 	};
 
 }

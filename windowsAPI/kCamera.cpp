@@ -3,6 +3,7 @@
 #include "kGameObject.h"
 #include "kInput.h"
 #include "kTime.h"
+#include "kImage.h"
 
 namespace k
 {
@@ -23,9 +24,25 @@ namespace k
 		mResolution = Vector2(data.width, data.height);
 		mLookPosition = (mResolution / 2.0f);
 
+		mCutton = Image::Create(L"CameraCutton", 1600, 900);
 	}
 	void Camera::Tick()
 	{
+		if (mAlphaTime <= mEndTime)
+		{
+			mAlphaTime += Time::DeltaTime();
+			float ratio = (mAlphaTime / mEndTime);
+
+			if (eCameraEffect::FadeIn == mEffect)
+			{
+				mCuttonAlpha = 1.0f - ratio;
+			}
+			else if (eCameraEffect::FadeOut == mEffect)
+			{
+				mCuttonAlpha = ratio;
+			}
+		}
+
 		if (KEY_PREESE(eKeyCode::UP))
 		{
 			mLookPosition.y -= 600.0f * Time::DeltaTime();
@@ -50,5 +67,19 @@ namespace k
 	}
 	void Camera::Render(HDC hdc)
 	{
+		if (mCuttonAlpha <= 0.0f)
+			return;
+
+		BLENDFUNCTION func = {};
+		func.BlendOp = AC_SRC_OVER;
+		func.BlendFlags = 0;
+		func.AlphaFormat = 0;
+		func.SourceConstantAlpha = (BYTE)(255.0f * mCuttonAlpha); //투명도 조절
+
+		AlphaBlend(hdc, 0, 0
+			, mCutton->GetWidth(), mCutton->GetHeight()
+			, mCutton->GetDC(), 0, 0
+			, mCutton->GetWidth(), mCutton->GetHeight()
+			, func);
 	}
 }

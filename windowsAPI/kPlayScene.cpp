@@ -5,6 +5,7 @@
 #include "kMonster.h"
 #include "kCollisionManager.h"
 #include "kBgImageObject.h"
+#include "kObjcet.h"
 
 //#include "kObstacleManager.h"
 
@@ -18,19 +19,11 @@ namespace k
 	}
 	void PlayScene::Initialize()
 	{
-		//BgImageObject* bg = new BgImageObject();
-		//bg->SetImage(L"LogoBG", L"LogoBG.bmp");
-		//bg->Initialize();
-		//AddGameObject(bg);
+		
+		k::object::Instantiate<Player>(eColliderLayer::Player);
+		mons[0] = k::object::Instantiate<Monster>(eColliderLayer::Monster);
+		mons[1] = k::object::Instantiate<Monster>(Vector2{ 1600 / 2 + 130, 300 / 2 }, eColliderLayer::Monster);
 
-		AddGameObject(new Player(), eColliderLayer::Player);
-		AddGameObject(new Monster(), eColliderLayer::Monster);
-
-
-		Monster* pMonster = new Monster();
-		pMonster->SetPos({ 1600 / 2 + 130, 300 / 2 });
-
-		AddGameObject(pMonster, eColliderLayer::Monster);
 		CollisionManager::SetLayer(eColliderLayer::Monster, eColliderLayer::Player, true);
 		CollisionManager::SetLayer(eColliderLayer::Monster, eColliderLayer::Player_Projecttile, true);
 	}
@@ -39,10 +32,13 @@ namespace k
 		Scene::Tick();
 		//k::ObstacleManager::GetObstacleManager()->Tick();
 
+		//k::object::Destroy(mons[0], 3.0f); // n초 뒤 오브젝트 삭제
+		
 		if (KEY_DOWN(eKeyCode::N))
 		{
 			SceneManager::ChangeSccene(eSceneType::End);
 		}
+		
 
 	}
 	void PlayScene::Render(HDC hdc)

@@ -3,6 +3,7 @@
 #include "kResources.h"
 #include "kInput.h"
 #include "kSceneManager.h"
+#include "kBgImageObject.h"
 namespace k
 {
 	TitleScene::TitleScene()
@@ -17,7 +18,11 @@ namespace k
 	}
 	void TitleScene::Initialize()
 	{
-		
+		BgImageObject* bg = new BgImageObject();
+		bg->SetImage(L"TitleScene", L"TitleScene.bmp");
+		bg->Initialize();
+
+		AddGameObject(bg, eColliderLayer::BackGround);
 	}
 	void TitleScene::Tick()
 	{

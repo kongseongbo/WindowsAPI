@@ -130,6 +130,7 @@
     <ClInclude Include="Common.h" />
     <ClInclude Include="def.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="kAnimation.h" />
     <ClInclude Include="kAnimator.h" />
     <ClInclude Include="kBackPack.h" />
     <ClInclude Include="kBgImageObject.h" />
@@ -146,6 +147,7 @@
     <ClInclude Include="kLogoScene.h" />
     <ClInclude Include="kMissile.h" />
     <ClInclude Include="kMonster.h" />
+    <ClInclude Include="kObjcet.h" />
     <ClInclude Include="kObstacle.h" />
     <ClInclude Include="kObstacleManager.h" />
     <ClInclude Include="kPlayer.h" />
@@ -162,6 +164,7 @@
     <ClInclude Include="windowsAPI.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="kAnimation.cpp" />
     <ClCompile Include="kAnimator.cpp" />
     <ClCompile Include="kBackPack.cpp" />
     <ClCompile Include="kBgImageObject.cpp" />

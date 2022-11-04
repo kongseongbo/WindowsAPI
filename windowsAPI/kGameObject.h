@@ -10,6 +10,7 @@ namespace k
 	{
 	public:
 		GameObject();
+		GameObject(Vector2 position);
 		virtual ~GameObject();
 
 		virtual void Initialize();
@@ -28,6 +29,7 @@ namespace k
 
 		void Death() { mDead = true; }
 		bool IsDeath() { return mDead; }
+		void SetDeathTime(float time);
 
 		void AddComponent(Component* component);
 
@@ -44,11 +46,15 @@ namespace k
 			return nullptr;
 		}
 
+		void DeathLoop();
+
 	private:
 		std::vector<Component*> mComponents;
 		Vector2 mPos;
 		Vector2 mScale;
 		bool mDead;
+		float mDeathTime;
+		bool mDeathTimeOn;
 	};
 }
 

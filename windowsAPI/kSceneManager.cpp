@@ -14,11 +14,12 @@ namespace k
 		//모든 씬들을 초기화
 		mScenes[(UINT)eSceneType::Logo] = new LogoScene();
 		mScenes[(UINT)eSceneType::Logo]->Initialize();
-
+		ChangeSccene(eSceneType::Logo);
 		mScenes[(UINT)eSceneType::Title] = new TitleScene();
 		mScenes[(UINT)eSceneType::Title]->Initialize();
 
 		mScenes[(UINT)eSceneType::Play] = new PlayScene();
+		ChangeSccene(eSceneType::Play);
 		mScenes[(UINT)eSceneType::Play]->Initialize();
 
 		mScenes[(UINT)eSceneType::End] = new EndScene();
@@ -26,7 +27,6 @@ namespace k
 
 
 		//mPlayScene = mScenes[(UINT)eSceneType::Logo];
-		ChangeSccene(eSceneType::Logo);
 		//업캐스팅
 		//다운캐스팅
 	}
@@ -40,6 +40,10 @@ namespace k
 	{
 		//현재 씬 Render
 		mPlayScene->Render(hdc);
+	}
+	void SceneManager::DestroyGameObject()
+	{
+
 	}
 	void SceneManager::Release()
 	{

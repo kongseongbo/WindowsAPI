@@ -16,7 +16,7 @@ namespace k
 
 		SetPos({ 1600 / 2,900 / 2 });
 		SetScale({ 3.0f,3.0f });
-		alpha = 255;
+		
 	}
 	BackPack::~BackPack()
 	{
@@ -24,7 +24,7 @@ namespace k
 	void BackPack::Tick()
 	{
 		GameObject::Tick();
-		alpha -= 10 * Time::DeltaTime();
+		
 	}
 	void BackPack::Render(HDC hdc)
 	{
@@ -45,7 +45,7 @@ namespace k
 		func.BlendOp = AC_SRC_OVER;
 		func.BlendFlags = 0;
 		func.AlphaFormat = AC_SRC_ALPHA;
-		func.SourceConstantAlpha = alpha; // 0 - 225
+		func.SourceConstantAlpha = 127; // 0 - 225
 
 		AlphaBlend(hdc, finalPos.x, finalPos.y, rect.x, rect.y,
 			mImage->GetDC(), 0, 0, mImage->GetWidth(), mImage->GetHeight()

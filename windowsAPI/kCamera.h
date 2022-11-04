@@ -13,6 +13,7 @@ namespace k
 		static void Render(HDC hdc);
 		static Vector2 CalculatePos(Vector2 pos) { return pos - mDistance; }
 		static void SetTarget(GameObject* GameObj) { mTarget = GameObj; }
+		static void SetCameraEffect(eCameraEffect effect) { mEffect = effect; }
 
 	private:
 		Camera() = default;
@@ -27,7 +28,6 @@ namespace k
 		static eCameraEffect mEffect;
 		static Image* mCutton; // 검정색 이미지
 		static float mAlphaTime;
-
 		static float mCuttonAlpha; // 0 ~ 255
 		static float mEndTime;
 	};

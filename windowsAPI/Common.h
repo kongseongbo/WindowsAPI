@@ -8,6 +8,7 @@
 #include <map>
 #include <bitset>
 #include <set>
+#include <functional> 
 
 #include "Maths.h"
 #include "def.h"

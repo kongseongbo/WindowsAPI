@@ -11,30 +11,55 @@ namespace k
 		template <typename T>
 		static __forceinline T* Instantiate(eColliderLayer type)
 		{
-			T* gameObjcet = new T();
+			T* gameObject = new T();
 			Scene* scene = SceneManager::GetPlayScene();
-			scene->AddGameObject(dynamic_cast<GameObject*>(gameObjcet), type);
+			scene->AddGameObject(dynamic_cast<GameObject*>(gameObject), type);
 
-			return gameObjcet;
+			return gameObject;
 		}
 
 		template <typename T>
 		static __forceinline T* Instantiate(Vector2 position, eColliderLayer type)
 		{
-			T* gameObjcet = new T(position);
+			T* gameObject = new T(position);
 			Scene* scene = SceneManager::GetPlayScene();
-			scene->AddGameObject(dynamic_cast<GameObject*>(gameObjcet), type);
+			scene->AddGameObject(dynamic_cast<GameObject*>(gameObject), type);
 
-			return gameObjcet;
+			return gameObject;
 		}
 
+		static __forceinline void Destroy(GameObject* gameObj)
+		{
+			gameObj->Death();
+		}
 
+		// 시간 측정해서 지우기
+		static __forceinline void Destroy(GameObject* gameObj, float deathTime)
+		{
+
+
+			gameObj->SetDeathTime(deathTime);
+		}
 
 		static __forceinline void Release()
 		{
-			// 해당 씬에 있는 모든 object를 가져와야한다.
 			Scene* scene = SceneManager::GetPlayScene();
-			
+			std::vector<std::vector<GameObject*>> objects = scene->GetGameObjects();
+
+			for (size_t y = 0; y < _COLLIDER_LAYER; y++)
+			{
+				for (std::vector<GameObject*>::iterator iter = objects[y].begin()
+					; iter != objects[y].end();)
+				{
+					if ((*iter)->IsDeath() == true)
+					{
+						iter = objects[y].erase(iter);
+						continue;
+					}
+					++iter;
+				}
+			}
 		}
+
 	}
 }

@@ -29,6 +29,22 @@ namespace k
 		AddComponent(new Collider());
 	}
 
+	Monster::Monster(Vector2 position)
+		: mTime(0.0f)
+	{
+		SetName(L"Monster");
+		SetPos(position);
+		SetScale({ 3.0f, 3.0f });
+
+		if (mImage == nullptr)
+		{
+			mImage = Resources::Load<Image>(L"Monster", L"..\\Resources\\Image\\Monster.bmp");
+		}
+
+		AddComponent(new Animator());
+		AddComponent(new Collider());
+	}
+
 	Monster::~Monster()
 	{
 

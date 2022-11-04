@@ -58,6 +58,8 @@ enum class eColliderLayer
 
 enum class eCameraEffect
 {
+	FadeIn,
+	FadeOut,
 	None,
 };
 

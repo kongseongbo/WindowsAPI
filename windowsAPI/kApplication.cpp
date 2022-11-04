@@ -37,7 +37,7 @@ namespace k
 		SelectObject(mWindowData.backBuffer, hPrevBrush);
 
 		SceneManager::Render(mWindowData.backBuffer);
-
+		Camera::Render(mWindowData.backBuffer);
 		Input::Render(mWindowData.backBuffer);
 		Time::Render(mWindowData.backBuffer);
 
@@ -46,6 +46,9 @@ namespace k
 		BitBlt(mWindowData.hdc
 			, 0, 0, mWindowData.width, mWindowData.height
 			, mWindowData.backBuffer, 0, 0, SRCCOPY);
+
+		// gameObjcet ªË¡¶
+		SceneManager::DestroyGameObject();
 	}
 
 	Application::Application()
