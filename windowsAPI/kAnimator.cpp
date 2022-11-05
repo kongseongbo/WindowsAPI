@@ -9,7 +9,7 @@ namespace k
 	Animator::Animator()
 		: Component(eComponentType::Aimator)
 		, mPlayAnimaion(nullptr)
-		, mLoop(false)
+		, mbLoop(false)
 	{
 		//mImage = Resources::Load<Image>(L"Player", L"..\\Resources\\Image\\Player.bmp");
 	}
@@ -21,7 +21,16 @@ namespace k
 
 	void Animator::Tick()
 	{
+		if (mPlayAnimaion != nullptr)
+		{
+			mPlayAnimaion->Tick();
 
+			if (mbLoop && mPlayAnimaion->isComplete()) // PlayAnimaion 다시 재생
+			{
+				mCompleteEvent();
+				mPlayAnimaion->Reset();
+			}
+		}
 	}
 
 	void Animator::Render(HDC hdc)
@@ -34,7 +43,7 @@ namespace k
 
 	Animation* Animator::FindAnimation(const std::wstring& name)
 	{
-		std::map<const std::wstring&, Animation*>::iterator iter = mAnimations.find(name);
+		std::map<std::wstring, Animation*>::iterator iter = mAnimations.find(name);
 		if (iter == mAnimations.end())
 			return nullptr;
 
@@ -43,7 +52,7 @@ namespace k
 
 	void Animator::CreateAnimation(const std::wstring& name, Image* image
 		, Vector2 leftTop, Vector2 size, Vector2 offset
-		, float columnLength, UINT spriteLegth, float duration, bool bAffectedCamera = false)
+		, UINT spriteLegth, float duration, bool bAffectedCamera)
 	{
 		Animation* animation = FindAnimation(name);
 		if (animation != nullptr)
@@ -54,7 +63,7 @@ namespace k
 
 		animation = new Animation();
 		animation->Create(image, leftTop, size, offset
-			, columnLength, spriteLegth, duration, bAffectedCamera);
+			, spriteLegth, duration, bAffectedCamera);
 
 		animation->SetName(name);
 		animation->SetAnimator(this);
@@ -62,8 +71,17 @@ namespace k
 		mAnimations.insert(std::make_pair(name, animation));
 	}
 
-	void Animator::Play(std::wstring& name, bool bLoop = false)
+	void Animator::Play(const std::wstring& name, bool bLoop)
 	{
+		mStartEvent();
 
+		Animation* prevAnimation = mPlayAnimaion;
+		mPlayAnimaion = FindAnimation(name);
+		mPlayAnimaion->Reset();
+		mbLoop = bLoop;
+
+		//새로운 애니메이션으로 바뀔때
+		if (prevAnimation != mPlayAnimaion)
+			mEndEvent();
 	}
 }

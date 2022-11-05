@@ -3,6 +3,7 @@
 #include "kAnimator.h"
 #include "kGameObject.h"
 #include "kCamera.h"
+#include "kTime.h"
 
 namespace k
 {
@@ -17,7 +18,19 @@ namespace k
 
 	void Animation::Tick()
 	{
+		
+		if (mbComplete)
+			return;
 
+		mTime += Time::DeltaTime();
+		if (mSpriteSheet[mSpriteIndex].duration < mTime) // SpriteSheet ¼øÈ¸
+		{
+			mTime = 0.0f;
+			if (mSpriteSheet.size() <= mSpriteIndex + 1) 
+				mbComplete = true;
+			else
+				mSpriteIndex++;
+		}
 	}
 	void Animation::Render(HDC hdc)
 	{
@@ -32,7 +45,7 @@ namespace k
 		func.BlendOp = AC_SRC_OVER;
 		func.BlendFlags = 0;
 		func.AlphaFormat = AC_SRC_ALPHA;
-		func.SourceConstantAlpha = 127; // 0 - 225
+		func.SourceConstantAlpha = 255; // 0 - 225
 
 		AlphaBlend(hdc
 			, int(pos.x - mSpriteSheet[mSpriteIndex].size.x / 2.0f)
@@ -49,7 +62,7 @@ namespace k
 	}
 
 	void Animation::Create(Image* image, Vector2 leftTop, Vector2 size, Vector2 offset
-		, float columnLength, UINT spriteLegth, float duration, bool bAffectedCamera)
+		, UINT spriteLegth, float duration, bool bAffectedCamera)
 	{
 		mImage = image;
 		mAffectedCamera = bAffectedCamera;
@@ -57,7 +70,7 @@ namespace k
 		for (size_t i = 0; i < spriteLegth; i++)
 		{
 			Sprite sprite;
-			sprite.leftTop.x = leftTop.x + (columnLength * (float)i);
+			sprite.leftTop.x = leftTop.x + (size.x * (float)i);
 			sprite.leftTop.y = leftTop.y;
 			sprite.size = size;
 			sprite.offset = offset;
@@ -70,6 +83,8 @@ namespace k
 
 	void Animation::Reset()
 	{
-
+		mSpriteIndex = 0;
+		mTime = 0.0f;
+		mbComplete = false;
 	}
 }

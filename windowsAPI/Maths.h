@@ -50,6 +50,12 @@ namespace k
 			return temp;
 		}
 
+		void operator +=(const Vector2& other)
+		{
+			x += other.x;
+			y += other.y;
+		}
+
 	};
 
 }

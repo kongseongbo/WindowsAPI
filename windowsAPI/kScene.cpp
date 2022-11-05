@@ -1,10 +1,11 @@
 #include "kScene.h"
 #include "kGameObject.h"
-
+#include "kSceneManager.h"
 namespace k
 {
 	Scene::Scene()
 	{
+		SceneManager::SetPlayScene(this); // 가장 마지막에 생성된 씬이 playScene으로 지정된다.
 		mObjects.resize(_COLLIDER_LAYER);
 	}
 

@@ -3,6 +3,7 @@
 
 namespace k
 {
+	class Animator;
 	class Image;
 	class Player : public GameObject
 	{
@@ -17,9 +18,12 @@ namespace k
 		virtual void OnCollisionStay(Collider* other) override;
 		virtual void OnCollisionExit(Collider* other) override;
 
+		void WalkComplete();
+
 	private:
 		float mSpeed;
 		Image* mImage;
+		Animator* mAnimator;
 	};
 }
 

@@ -2,6 +2,7 @@
 #include "kGameObject.h"
 namespace k
 {
+	class Image;
 	class Missile : public GameObject
 	{
 	public:
@@ -19,6 +20,7 @@ namespace k
 	private:
 		float mSpeed;
 		float mAliveTime;
+		Image* mImage;
 	};
 
 }

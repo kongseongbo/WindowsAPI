@@ -32,7 +32,7 @@ namespace k
 		void Render(HDC hdc);
 		void Create(Image* image
 			, Vector2 leftTop, Vector2 size, Vector2 offset
-			, float columnLength, UINT spriteLegth, float duration, bool bAffectedCamera = true);
+			, UINT spriteLegth, float duration, bool bAffectedCamera = true);
 
 		void Reset();
 		bool isComplete() { return mbComplete; }

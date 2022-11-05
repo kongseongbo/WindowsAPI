@@ -31,19 +31,20 @@ namespace k
 		virtual void Render(HDC hdc) override;
 
 		Animation* FindAnimation(const std::wstring& name);
+		//
 		void CreateAnimation(const std::wstring& name, Image* image
 			, Vector2 leftTop, Vector2 size, Vector2 offset
-			, float columnLength, UINT spriteLegth, float duration, bool bAffectedCamera = true);
-		void Play(std::wstring& name, bool bLoop = false);
+			, UINT spriteLegth, float duration, bool bAffectedCamera = true);
+		void Play(const std::wstring& name, bool bLoop = false);
 
 	public:
-		Event mStartEvent;
-		Event mCompleteEvent;
-		Event mEndEvent;
+		Event mStartEvent; //애니메이션 시작할때 Event
+		Event mCompleteEvent; //애니메이션 끝났을때 Event
+		Event mEndEvent; // 새로운  애니메이션으로 바뀔때 Event
 
 	private:
-		std::map<const std::wstring&, Animation*> mAnimations;
+		std::map< std::wstring, Animation*> mAnimations;
 		Animation* mPlayAnimaion;
-		bool mLoop;
+		bool mbLoop;
 	};
 }

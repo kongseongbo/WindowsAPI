@@ -19,7 +19,6 @@ namespace k
 	}
 	void PlayScene::Initialize()
 	{
-		
 		k::object::Instantiate<Player>(eColliderLayer::Player);
 		mons[0] = k::object::Instantiate<Monster>(eColliderLayer::Monster);
 		mons[1] = k::object::Instantiate<Monster>(Vector2{ 1600 / 2 + 130, 300 / 2 }, eColliderLayer::Monster);

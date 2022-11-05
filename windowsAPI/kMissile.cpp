@@ -2,6 +2,9 @@
 #include "kTime.h"
 #include "kCollider.h"
 #include "kCamera.h"
+#include "kAnimator.h"
+#include "kResources.h"
+#include "kImage.h"
 
 namespace k
 {
@@ -16,7 +19,19 @@ namespace k
 		col->SetScale(Vector2(20.0f, 20.0f));
 
 		AddComponent(col);
-		//Camera::SetTarget(this);
+		if (mImage == nullptr)
+		{
+			mImage = Resources::Find<Image>(L"Player");
+		}
+		
+		Animator* ani = new Animator();
+		ani->CreateAnimation(L"Idle", mImage
+			, Vector2(0.0f, 0.0f), Vector2(120.0f, 130.0f)
+			, Vector2(5.0f, -20.0f), 3, 0.1f);
+
+		ani->Play(L"Idle", true);
+
+		AddComponent(ani);
 	}
 
 	Missile::~Missile()
@@ -34,17 +49,18 @@ namespace k
 		}
 
 		Vector2 pos = GetPos();
-		pos.y -= 500.0f * Time::DeltaTime();
+		//pos.y -= 500.0f * Time::DeltaTime(); 
+		pos.y -= Time::DeltaTime();
 		SetPos(pos);
 	}
 
 	void Missile::Render(HDC hdc)
 	{
-		Vector2 pos = GetPos();
+		/*Vector2 pos = GetPos();
 		Vector2 scale = GetScale();
 		pos = Camera::CalculatePos(pos);
 
-		Ellipse(hdc, pos.x - 10, pos.y - 10, pos.x + scale.x, pos.y + scale.y);
+		Ellipse(hdc, pos.x - 10, pos.y - 10, pos.x + scale.x, pos.y + scale.y);*/
 
 		GameObject::Render(hdc);
 	}
