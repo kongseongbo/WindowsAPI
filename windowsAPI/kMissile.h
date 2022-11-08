@@ -21,6 +21,9 @@ namespace k
 		float mSpeed;
 		float mAliveTime;
 		Image* mImage;
+
+	public :
+		Vector2 mDir;
 	};
 
 }

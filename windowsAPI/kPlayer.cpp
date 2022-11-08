@@ -44,11 +44,14 @@ namespace k
 			, Vector2(5.0f, -20.0f), 10, 0.1f);
 
 		mAnimator->Play(L"Idle", true);
+		//mAnimator->mCompleteEvent = std::bind(&Player::WalkComplete, this);
+		mAnimator->GetCompleteEvent(L"MoveRight") = std::bind(&Player::WalkComplete, this);
 
-		mAnimator->mCompleteEvent = std::bind(&Player::WalkComplete, this);
 
 		AddComponent(mAnimator);
 		AddComponent(new Collider());
+
+		mCoff = 0.1f;
 
 		//Camera::SetTarget(this);
 	}

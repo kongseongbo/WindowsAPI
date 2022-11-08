@@ -11,11 +11,11 @@ namespace k
 	{
 		if (mImage == nullptr)
 		{
-			mImage = Resources::Load<Image>(L"BackPack", L"..\\Resources\\Image\\BackPack.bmp");
+			mImage = Resources::Load<Image>(L"BackPack", L"..\\Resources\\Image\\inventory.bmp");
 		}
 
 		SetPos({ 1600 / 2,900 / 2 });
-		SetScale({ 3.0f,3.0f });
+		SetScale({ 1.0f,1.0f });
 		
 	}
 	BackPack::~BackPack()
@@ -45,7 +45,7 @@ namespace k
 		func.BlendOp = AC_SRC_OVER;
 		func.BlendFlags = 0;
 		func.AlphaFormat = AC_SRC_ALPHA;
-		func.SourceConstantAlpha = 127; // 0 - 225
+		func.SourceConstantAlpha = 225; // 0 - 225
 
 		AlphaBlend(hdc, finalPos.x, finalPos.y, rect.x, rect.y,
 			mImage->GetDC(), 0, 0, mImage->GetWidth(), mImage->GetHeight()

@@ -21,6 +21,7 @@ namespace k
 		void WalkComplete();
 
 	private:
+		float mCoff;
 		float mSpeed;
 		Image* mImage;
 		Animator* mAnimator;

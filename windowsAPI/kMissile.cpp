@@ -32,6 +32,8 @@ namespace k
 		ani->Play(L"Idle", true);
 
 		AddComponent(ani);
+
+		mDir += Vector2(1.0f, 0.0f);
 	}
 
 	Missile::~Missile()
@@ -48,9 +50,25 @@ namespace k
 			this->Death();
 		}
 
+		float radian = DegreeToRadian(90.0f);
+		float degree = RadianToDegree(2 * PI);
+
+		float speed = 100.0f;
+
 		Vector2 pos = GetPos();
 		//pos.y -= 500.0f * Time::DeltaTime(); 
-		pos.y -= Time::DeltaTime();
+		//pos.y -= Time::DeltaTime();
+
+		// 삼각함수를 이용한 회전
+		//mDir = PI / 2.0f;
+		//pos.x += speed * cosf(mDir) * Time::DeltaTime();
+		//pos.y -= speed * sinf(mDir) * Time::DeltaTime();
+
+
+		// 벡터를 이용한 회전
+		pos.y += mDir.y * speed * Time::DeltaTime();
+		pos.x += mDir.x * speed * Time::DeltaTime();
+
 		SetPos(pos);
 	}
 

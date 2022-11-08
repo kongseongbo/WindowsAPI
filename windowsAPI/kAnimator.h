@@ -23,6 +23,12 @@ namespace k
 
 			std::function<void()> mEvent;
 		};
+		struct Events
+		{
+			Event mStartEvent; //애니메이션 시작할때 Event
+			Event mCompleteEvent;//애니메이션 끝났을때 Event
+			Event mEndEvent;// 새로운  애니메이션으로 바뀔때 Event
+		};
 
 		Animator();
 		~Animator();
@@ -38,12 +44,15 @@ namespace k
 		void Play(const std::wstring& name, bool bLoop = false);
 
 	public:
-		Event mStartEvent; //애니메이션 시작할때 Event
-		Event mCompleteEvent; //애니메이션 끝났을때 Event
-		Event mEndEvent; // 새로운  애니메이션으로 바뀔때 Event
+		Events* FindEvents(const std::wstring key);
+		std::function<void()>& GetStartEvent(const std::wstring key);
+		std::function<void()>& GetCompleteEvent(const std::wstring key);
+		std::function<void()>& GetEndEvent(const std::wstring key);
 
 	private:
 		std::map< std::wstring, Animation*> mAnimations;
+		std::map<std::wstring, Events*> mEvents;
+
 		Animation* mPlayAnimaion;
 		bool mbLoop;
 	};

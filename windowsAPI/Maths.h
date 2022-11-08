@@ -1,6 +1,19 @@
 #pragma once
+#include <math.h>
+#define PI 3.141592
+
 namespace k
 {
+	inline float DegreeToRadian(float degree)
+	{
+		return degree * PI / 180.0f;
+	}
+
+	inline float RadianToDegree(float radian)
+	{
+		return radian * (180.0f / PI);
+	}
+
 	struct Vector2
 	{
 		static Vector2 Zero;
