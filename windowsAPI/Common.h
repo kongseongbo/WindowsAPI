@@ -4,20 +4,54 @@
 
 #include <string>
 #include <vector>
+#include <stack>
+#include <queue>
 #include <list>
 #include <map>
 #include <bitset>
 #include <set>
 #include <functional> 
+#include <filesystem> // 경로등을 처리하는 라이브러리
+#include <assert.h>
 
 #include "Maths.h"
 #include "def.h"
 
-//TransparentBlt을 사용하기 위해 추가
-#pragma comment(lib,"Msimg32.lib")
+//렌더링 라이브러리
+#pragma comment(lib, "Msimg32.lib")
+//사운드 라이브러리
+#include <mmsystem.h>
+#include <dsound.h>
+#include <dinput.h>
+#pragma comment(lib, "winmm.lib")
+#pragma comment(lib, "dsound.lib")
+
+//typedef Pos POINT;
+//using Pos = POINT;
+
+//typedef std::vector<std::vector<GameObject*>> GameObjects;
+//typedef std::vector<GameObject*> LayerObjects;
+
+struct Pixel
+{
+	BYTE R;
+	BYTE G;
+	BYTE B;
+	BYTE A;
+
+	Pixel(BYTE r, BYTE g, BYTE b, BYTE a)
+		:R(r), G(g), B(b), A(a)
+	{
+
+	}
+		
+};
 
 struct WindowData
 {
+	// 렌더 타겟
+	// 프레임버퍼
+
 	HWND hWnd; // 윈도우의 핸들
 	HDC hdc; // 메인 그림 담당
 
@@ -49,7 +83,9 @@ public:
 		, mOldPen(NULL)
 		, mPen(NULL)
 	{
+
 	}
+
 	Pen(HDC hdc, HPEN pen)
 		: mHdc(hdc)
 		, mOldPen(NULL)
@@ -57,6 +93,7 @@ public:
 	{
 		mOldPen = (HPEN)SelectObject(mHdc, pen);
 	}
+
 	~Pen()
 	{
 		SelectObject(mHdc, mOldPen);
@@ -67,6 +104,7 @@ public:
 	{
 		mOldPen = (HPEN)SelectObject(mHdc, pen);
 	}
+
 };
 
 struct Brush
@@ -78,12 +116,13 @@ private:
 
 public:
 	Brush(HDC hdc, HBRUSH brush)
-		:mHdc(hdc)
+		: mHdc(hdc)
 		, mOldBrush(NULL)
 		, mBrush(brush)
 	{
 		mOldBrush = (HBRUSH)SelectObject(mHdc, brush);
 	}
+
 	~Brush()
 	{
 		SelectObject(mHdc, mOldBrush);

@@ -18,6 +18,6 @@ namespace k
 
 	private:
 		Image* mImage;
-
+		
 	};
 }

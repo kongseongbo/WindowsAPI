@@ -19,6 +19,7 @@ namespace k
 		virtual void OnCollisionStay(Collider* other) override;
 		virtual void OnCollisionExit(Collider* other) override;
 
+		//void Dead();
 
 	private:
 		Image* mImage;

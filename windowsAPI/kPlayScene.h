@@ -4,6 +4,8 @@
 
 namespace k
 {
+	class Image;
+	class Mushroom;
 	class Monster;
 	class PlayScene : public Scene
 	{
@@ -20,6 +22,9 @@ namespace k
 
 	private:
 		Monster* mons[2];
+		Mushroom* mushs[2];
+
+		Image* mImage;
 	};
 
 }

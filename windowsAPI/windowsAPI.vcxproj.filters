@@ -47,6 +47,15 @@
     <Filter Include="Engine\Resource\Base">
       <UniqueIdentifier>{ec7a5509-ac56-4ae7-9e9b-ebdd1b60083a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\GameObject\Game">
+      <UniqueIdentifier>{ef583c4b-8adf-4371-94c4-8927307bb55a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\GameObject\UI">
+      <UniqueIdentifier>{7498707d-c29a-4687-a1c9-7f3efe6335fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\GameObject\UI\Base">
+      <UniqueIdentifier>{5449ac0e-1f74-44d3-ad6c-a7d0dc848de3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -85,23 +94,14 @@
     <ClInclude Include="kGameObject.h">
       <Filter>Engine\GameObject\Base</Filter>
     </ClInclude>
-    <ClInclude Include="kPlayer.h">
-      <Filter>Engine\GameObject</Filter>
-    </ClInclude>
     <ClInclude Include="kTime.h">
       <Filter>Engine\Manager</Filter>
     </ClInclude>
     <ClInclude Include="kInput.h">
       <Filter>Engine\Manager</Filter>
     </ClInclude>
-    <ClInclude Include="kMissile.h">
-      <Filter>Engine\GameObject</Filter>
-    </ClInclude>
     <ClInclude Include="kScene.h">
       <Filter>Engine\Scene\Base</Filter>
-    </ClInclude>
-    <ClInclude Include="kObstacle.h">
-      <Filter>Engine\GameObject</Filter>
     </ClInclude>
     <ClInclude Include="kObstacleManager.h">
       <Filter>Engine\Manager</Filter>
@@ -133,26 +133,68 @@
     <ClInclude Include="kPlayScene.h">
       <Filter>Engine\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="kBgImageObject.h">
-      <Filter>Engine\GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="kMonster.h">
-      <Filter>Engine\GameObject</Filter>
-    </ClInclude>
     <ClInclude Include="kCollisionManager.h">
       <Filter>Engine\Manager</Filter>
     </ClInclude>
     <ClInclude Include="kCamera.h">
       <Filter>Engine\Manager</Filter>
     </ClInclude>
-    <ClInclude Include="kBackPack.h">
-      <Filter>Engine\GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="kObjcet.h">
+    <ClInclude Include="kObject.h">
       <Filter>Engine\Common</Filter>
     </ClInclude>
     <ClInclude Include="kAnimation.h">
       <Filter>Engine\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="kBackPack.h">
+      <Filter>Engine\GameObject\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="kBgImageObject.h">
+      <Filter>Engine\GameObject\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="kMissile.h">
+      <Filter>Engine\GameObject\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="kMonster.h">
+      <Filter>Engine\GameObject\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="kMushroom.h">
+      <Filter>Engine\GameObject\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="kObstacle.h">
+      <Filter>Engine\GameObject\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="kPlayer.h">
+      <Filter>Engine\GameObject\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="kRigidbody.h">
+      <Filter>Engine\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="kUIManager.h">
+      <Filter>Engine\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="kButton.h">
+      <Filter>Engine\GameObject\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="kHUD.h">
+      <Filter>Engine\GameObject\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="kPanel.h">
+      <Filter>Engine\GameObject\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="kUiBase.h">
+      <Filter>Engine\GameObject\UI\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="kGround.h">
+      <Filter>Engine\GameObject\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="kSoundManager.h">
+      <Filter>Engine\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="kSound.h">
+      <Filter>Engine\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="kMap.h">
+      <Filter>Engine\GameObject\Game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -190,20 +232,11 @@
     <ClCompile Include="kGameObject.cpp">
       <Filter>Engine\GameObject\Base</Filter>
     </ClCompile>
-    <ClCompile Include="kPlayer.cpp">
-      <Filter>Engine\GameObject</Filter>
-    </ClCompile>
     <ClCompile Include="kTime.cpp">
       <Filter>Engine\Manager</Filter>
     </ClCompile>
     <ClCompile Include="kInput.cpp">
       <Filter>Engine\Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="kMissile.cpp">
-      <Filter>Engine\GameObject</Filter>
-    </ClCompile>
-    <ClCompile Include="kObstacle.cpp">
-      <Filter>Engine\GameObject</Filter>
     </ClCompile>
     <ClCompile Include="kObstacleManager.cpp">
       <Filter>Engine\Manager</Filter>
@@ -238,23 +271,65 @@
     <ClCompile Include="kPlayScene.cpp">
       <Filter>Engine\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="kBgImageObject.cpp">
-      <Filter>Engine\GameObject</Filter>
-    </ClCompile>
-    <ClCompile Include="kMonster.cpp">
-      <Filter>Engine\GameObject</Filter>
-    </ClCompile>
     <ClCompile Include="kCollisionManager.cpp">
       <Filter>Engine\Manager</Filter>
     </ClCompile>
     <ClCompile Include="kCamera.cpp">
       <Filter>Engine\Manager</Filter>
     </ClCompile>
-    <ClCompile Include="kBackPack.cpp">
-      <Filter>Engine\GameObject</Filter>
-    </ClCompile>
     <ClCompile Include="kAnimation.cpp">
       <Filter>Engine\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="kBackPack.cpp">
+      <Filter>Engine\GameObject\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="kBgImageObject.cpp">
+      <Filter>Engine\GameObject\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="kMissile.cpp">
+      <Filter>Engine\GameObject\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="kMonster.cpp">
+      <Filter>Engine\GameObject\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="kMushroom.cpp">
+      <Filter>Engine\GameObject\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="kObstacle.cpp">
+      <Filter>Engine\GameObject\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="kPlayer.cpp">
+      <Filter>Engine\GameObject\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="kRigidbody.cpp">
+      <Filter>Engine\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="kUIManager.cpp">
+      <Filter>Engine\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="kHUD.cpp">
+      <Filter>Engine\GameObject\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="kPanel.cpp">
+      <Filter>Engine\GameObject\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="kButton.cpp">
+      <Filter>Engine\GameObject\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="kUiBase.cpp">
+      <Filter>Engine\GameObject\UI\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="kGround.cpp">
+      <Filter>Engine\GameObject\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="kSoundManager.cpp">
+      <Filter>Engine\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="kSound.cpp">
+      <Filter>Engine\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="kMap.cpp">
+      <Filter>Engine\GameObject\Game</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

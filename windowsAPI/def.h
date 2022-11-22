@@ -32,8 +32,9 @@ enum class eBrushColor
 
 enum class eComponentType
 {
-	Aimator,
+	Rigidbody,
 	Collider,
+	Aimator,
 	Sound,
 	End,
 };
@@ -42,7 +43,9 @@ enum class eComponentType
 enum class eColliderLayer
 {
 	Default,
+	//GameObject
 	BackGround,
+	BackGround2,
 	Tile,
 
 	Player,
@@ -51,6 +54,9 @@ enum class eColliderLayer
 	Monster,
 	Monster_Projecttile,
 
+	Ground,
+
+	//UI
 	BackPack,
 	UI = _COLLIDER_LAYER - 1,
 	End = _COLLIDER_LAYER,
@@ -61,6 +67,18 @@ enum class eCameraEffect
 	FadeIn,
 	FadeOut,
 	None,
+};
+
+enum class eUIType
+{
+	HP,
+	MP,
+	SHOP,
+	INVENTORY,
+	OPTION,
+
+
+	END,
 };
 
 //불규칙적인 숫자를 이용하기 위해 사용
@@ -74,3 +92,10 @@ union ColliderID
 
 	UINT64 ID;
 };
+typedef ColliderID TileID;
+
+#define TILE_SIZE 32
+#define TILE_SCALE 2
+
+#define TILE_LINE_X 8
+#define TILE_LINE_Y 3

@@ -21,19 +21,31 @@ namespace k
 		virtual void OnCollisionStay(Collider* other);
 		virtual void OnCollisionExit(Collider* other);
 
-
-		void SetPos(Vector2 pos) { mPos = pos; }
+		void SetPos(Vector2 pos)
+		{
+			mPos = pos;
+		}
 		Vector2 GetPos() { return mPos; }
-		void SetScale(Vector2 scale) { mScale = scale; } // object 크기 조절
+		void SetScale(Vector2 scale) { mScale = scale; }
 		Vector2 GetScale() { return mScale; }
-
 		void Death() { mDead = true; }
 		bool IsDeath() { return mDead; }
 		void SetDeathTime(float time);
 
-		void AddComponent(Component* component);
 
-		template<typename T>
+
+		void AddComponent(Component* component);
+		template <typename T>
+		__forceinline T* AddComponent()
+		{
+			T* comp = new T();
+			GameObject::AddComponent(comp);
+
+			return comp;
+		}
+
+
+		template <typename T>
 		__forceinline T* GetComponent()
 		{
 			T* component;
@@ -43,6 +55,7 @@ namespace k
 				if (component != nullptr)
 					return component;
 			}
+
 			return nullptr;
 		}
 
@@ -57,13 +70,3 @@ namespace k
 		bool mDeathTimeOn;
 	};
 }
-
-
-//상속구조
-//작업속도가 빠르다
-
-
-//컴포넌트구조
-//작업속도가 느리다
-//SceneManager
-//Scene

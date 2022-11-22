@@ -25,11 +25,17 @@ namespace k
 	};
 
 	std::vector<Input::Key> Input::mKeys;
+	Vector2 Input::mMousePos;
 
 	void Input::Initialize()
 	{
 		for (size_t i = 0; i < (UINT)eKeyCode::End; i++)
 		{
+			//// 나의 키 종류
+			//eKeyCode keyCode;
+			//// 키보드 상태
+			//eKeyState state;
+			//bool bPressed;
 			Key key;
 			key.keyCode = (eKeyCode)i;
 			key.state = eKeyState::NONE;
@@ -38,30 +44,59 @@ namespace k
 			mKeys.push_back(key);
 		}
 	}
+
 	void Input::Tick()
 	{
-		for (size_t i = 0; i < (UINT)eKeyCode::End; i++)
+		if (GetFocus())
 		{
-			//해당키가 현재 눌려져 있는 경우
-			if (GetAsyncKeyState(ASCII[i]) & 0x8000)
+			// 키보드
+			for (UINT i = 0; i < (UINT)eKeyCode::End; i++)
 			{
-				// 이전 프레임 눌려져 있었다.
-				if (mKeys[i].bPressed)
-					mKeys[i].state = eKeyState::PRESSED;
-				else
-					mKeys[i].state = eKeyState::DOWN;
+				//해당키가 현재 눌려져 있는경우
+				if (GetAsyncKeyState(ASCII[i]) & 0x8000)
+				{
+					// 이전 프레임 눌려져 있엇다
+					if (mKeys[i].bPressed)
+						mKeys[i].state = eKeyState::PRESSED;
+					else
+						mKeys[i].state = eKeyState::DOWN;
 
-				mKeys[i].bPressed = true;
-				
-			}
-			//눌려져 있지 않은 경우
-			else
-			{
-				// 이전 프레임 눌려져 있었다.
-				if (mKeys[i].bPressed)
-					mKeys[i].state = eKeyState::UP;
+					mKeys[i].bPressed = true;
+				}
+				//해당 눌려져 있지 않은 경우
 				else
+				{
+					// 이전 프레임 눌려져 있엇다
+					if (mKeys[i].bPressed)
+						mKeys[i].state = eKeyState::UP;
+					else
+						mKeys[i].state = eKeyState::NONE;
+
+					mKeys[i].bPressed = false;
+				}
+			}
+
+			//
+			POINT mousePos = {};
+			GetCursorPos(&mousePos);
+			HWND hwnd = Application::GetInstance().GetWindowData().hWnd;
+			ScreenToClient(hwnd, &mousePos);
+			mMousePos.x = mousePos.x;
+			mMousePos.y = mousePos.y;
+		}
+		else
+		{
+			for (UINT i = 0; i < (UINT)eKeyCode::End; i++)
+			{
+				if (eKeyState::DOWN == mKeys[i].state
+					|| eKeyState::PRESSED == mKeys[i].state)
+				{
+					mKeys[i].state = eKeyState::UP;
+				}
+				else if (eKeyState::UP == mKeys[i].state)
+				{
 					mKeys[i].state = eKeyState::NONE;
+				}
 
 				mKeys[i].bPressed = false;
 			}
@@ -74,5 +109,21 @@ namespace k
 	eKeyState Input::GetKeyState(eKeyCode keyCode)
 	{
 		return mKeys[(UINT)keyCode].state;
+	}
+	Vector2 Input::GetMousePos(HWND hWnd)
+	{
+		Vector2 vMousePos(-1.0f, -1.0f);
+		if (GetFocus())
+		{
+			POINT mousePos = {};
+			GetCursorPos(&mousePos);
+			ScreenToClient(hWnd, &mousePos);
+			vMousePos.x = mousePos.x;
+			vMousePos.y = mousePos.y;
+
+			return vMousePos;
+		}
+
+		return vMousePos;
 	}
 }

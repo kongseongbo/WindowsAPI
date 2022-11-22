@@ -10,7 +10,7 @@ namespace k
 	{
 		if (mImage == nullptr)
 		{
-			mImage = Resources::Load<Image>(L"TitleScene", L"..\\Resources\\Image\\TitleScene.bmp");
+			mImage = Resources::Load<Image>(L"TitleScene", L"..\\Resources\\Image\\Map\\TitleScene.bmp");
 		}
 	}
 	TitleScene::~TitleScene()

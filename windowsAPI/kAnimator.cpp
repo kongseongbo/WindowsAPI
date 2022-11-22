@@ -35,7 +35,7 @@ namespace k
 		{
 			mPlayAnimaion->Tick();
 
-			if (mbLoop && mPlayAnimaion->isComplete()) // PlayAnimaion 다시 재생
+			if (mbLoop && mPlayAnimaion->isComplete())
 			{
 				Animator::Events* events
 					= FindEvents(mPlayAnimaion->GetName());
@@ -53,6 +53,23 @@ namespace k
 		{
 			mPlayAnimaion->Render(hdc);
 		}
+	}
+
+	std::wstring Animator::CreateAniamtionKey(std::wstring path)
+	{
+		std::wstring keyString = path;
+
+		// 얘니메이션 폴더 이름 추룰
+		UINT pos = keyString.find_last_of(L"\\");
+		std::wstring tail = keyString.substr(pos + 1, keyString.length());
+		keyString = keyString.substr(0, pos);
+
+		// 애니메이션 오브젝트 이름 추출
+		pos = keyString.find_last_of(L"\\");
+		std::wstring head = keyString.substr(pos + 1, keyString.length());
+		keyString = head + tail;
+
+		return keyString;
 	}
 
 	Animation* Animator::FindAnimation(const std::wstring& name)
@@ -88,6 +105,53 @@ namespace k
 		mEvents.insert(std::make_pair(name, events));
 	}
 
+	void Animator::CreateAnimations(const std::wstring& path
+		, const std::wstring& name
+		, Vector2 offset
+		, float duration)
+	{
+		UINT width = 0;
+		UINT height = 0;
+		UINT fileCount = 0;
+
+		std::filesystem::path fs(path);
+		std::vector<Image*> images;
+		int fileIndex = 0;
+		for (auto& p : std::filesystem::recursive_directory_iterator(path))
+		{
+			std::wstring fileName = p.path().filename();
+			std::wstring key = CreateAniamtionKey(path) + std::to_wstring(fileIndex++);
+			std::wstring fullName = path + L"\\" + fileName;
+
+			Image* image = Resources::Load<Image>(key, fullName);
+			images.push_back(image);
+
+			if (width < image->GetWidth())
+				width = image->GetWidth();
+
+			if (height < image->GetHeight())
+				height = image->GetHeight();
+
+			fileCount++;
+
+		}
+
+		mSPriteSheet = Image::Create(name, width * fileCount, height);
+		int index = 0;
+		for (Image* image : images)
+		{
+			BitBlt(mSPriteSheet->GetDC(), width * index, 0, image->GetWidth(), image->GetHeight()
+				, image->GetDC(), 0, 0, SRCCOPY);
+			index++;
+		}
+
+		CreateAnimation(name, mSPriteSheet
+			, Vector2(0.0f, 0.0f), Vector2(width, height)
+			, offset, fileCount, duration);
+
+	}
+
+	// 현재 Play중인 Animation
 	void Animator::Play(const std::wstring& name, bool bLoop)
 	{
 		Animator::Events* events = FindEvents(name);
@@ -113,24 +177,29 @@ namespace k
 		{
 			return nullptr;
 		}
+
 		return iter->second;
 	}
+
 	std::function<void()>& Animator::GetStartEvent(const std::wstring key)
 	{
 		Events* events = FindEvents(key);
 
 		return events->mStartEvent.mEvent;
 	}
+
 	std::function<void()>& Animator::GetCompleteEvent(const std::wstring key)
 	{
 		Events* events = FindEvents(key);
 
 		return events->mCompleteEvent.mEvent;
 	}
+
 	std::function<void()>& Animator::GetEndEvent(const std::wstring key)
 	{
 		Events* events = FindEvents(key);
 
 		return events->mEndEvent.mEvent;
 	}
+
 }

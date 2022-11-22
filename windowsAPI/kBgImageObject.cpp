@@ -1,7 +1,8 @@
 #include "kBgImageObject.h"
 #include "kResources.h"
 #include "kImage.h"
-
+#include "kPlayer.h"
+#include "kComponent.h"
 namespace k
 {
 	BgImageObject::BgImageObject()
@@ -15,10 +16,16 @@ namespace k
 	}
 	void BgImageObject::Initialize()
 	{
+		//mImage = Resources::Load<Image>(L"PlayScenePixel", L"..\\Resources\\Image\\Map\\HenesysGolemSawonPixel.bmp");
 	}
 	void BgImageObject::Tick()
 	{
 		GameObject::Tick();
+
+		//Pixel로 Map 충돌처리
+		//Playerpos;
+		//mPixelImage->GetPixel(Playerpos);
+		
 	}
 	void BgImageObject::Render(HDC hdc)
 	{

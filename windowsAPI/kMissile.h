@@ -16,14 +16,14 @@ namespace k
 		virtual void OnCollisionStay(Collider* other) override;
 		virtual void OnCollisionExit(Collider* other) override;
 
-
 	private:
 		float mSpeed;
 		float mAliveTime;
 		Image* mImage;
 
-	public :
+	public:
 		Vector2 mDir;
+		Vector2 mDestPos;
 	};
 
 }

@@ -16,11 +16,13 @@ namespace k
 		static void ChangeSccene(eSceneType type);
 
 		static Scene* GetPlayScene() { return mPlayScene; }
+		static eSceneType GetPlaySceneType() { return mType; }
+
 		static void SetPlayScene(Scene* playScene) { mPlayScene = playScene; }
 
 	private:
 		static Scene* mScenes[(UINT)eSceneType::Max]; 
 		static Scene* mPlayScene;
-
+		static eSceneType mType;
 	};
 }

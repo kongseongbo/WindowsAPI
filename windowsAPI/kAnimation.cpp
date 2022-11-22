@@ -18,24 +18,25 @@ namespace k
 
 	void Animation::Tick()
 	{
-		
 		if (mbComplete)
 			return;
 
 		mTime += Time::DeltaTime();
-		if (mSpriteSheet[mSpriteIndex].duration < mTime) // SpriteSheet ¼øÈ¸
+		if (mSpriteSheet[mSpriteIndex].duration < mTime)
 		{
 			mTime = 0.0f;
-			if (mSpriteSheet.size() <= mSpriteIndex + 1) 
+			if (mSpriteSheet.size() <= mSpriteIndex + 1)
 				mbComplete = true;
 			else
 				mSpriteIndex++;
 		}
 	}
+
 	void Animation::Render(HDC hdc)
 	{
 		GameObject* gameObj = mAnimator->GetOwner();
 		Vector2 pos = gameObj->GetPos();
+		//Vector2 scale = gameObj->GetScale();
 
 		if (mAffectedCamera)
 			pos = Camera::CalculatePos(pos);
@@ -47,6 +48,9 @@ namespace k
 		func.AlphaFormat = AC_SRC_ALPHA;
 		func.SourceConstantAlpha = 255; // 0 - 225
 
+		pos += mSpriteSheet[mSpriteIndex].offset;
+
+		//Draw
 		AlphaBlend(hdc
 			, int(pos.x - mSpriteSheet[mSpriteIndex].size.x / 2.0f)
 			, int(pos.y - mSpriteSheet[mSpriteIndex].size.y / 2.0f)
@@ -78,7 +82,6 @@ namespace k
 
 			mSpriteSheet.push_back(sprite);
 		}
-
 	}
 
 	void Animation::Reset()

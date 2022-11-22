@@ -5,12 +5,13 @@
 #include "kAnimator.h"
 #include "kResources.h"
 #include "kImage.h"
+#include "kInput.h"
 
 namespace k
 {
 	Missile::Missile()
 		: mSpeed(1.0f)
-		, mAliveTime(5.0f)
+		, mAliveTime(30.0f)
 	{
 		SetPos({ 100.0f, 100.0f });
 		SetScale({ 20.0f, 20.0f });
@@ -21,49 +22,49 @@ namespace k
 		AddComponent(col);
 		if (mImage == nullptr)
 		{
-			mImage = Resources::Find<Image>(L"Player");
+			mImage = Resources::Load<Image>(L"msiile", L"..\\Resources\\Image\\msiile.bmp");
 		}
-		
-		Animator* ani = new Animator();
-		ani->CreateAnimation(L"Idle", mImage
-			, Vector2(0.0f, 0.0f), Vector2(120.0f, 130.0f)
-			, Vector2(5.0f, -20.0f), 3, 0.1f);
 
-		ani->Play(L"Idle", true);
+		//Animator* ani = new Animator();
+		//ani->CreateAnimation(L"Idle", mImage
+		//	, Vector2(0.0f, 0.0f), Vector2(120.0f, 130.0f)
+		//	, Vector2(5.0f, -20.0f), 3, 0.1f);
 
-		AddComponent(ani);
+		//ani->Play(L"Idle", true);
 
-		mDir += Vector2(1.0f, 0.0f);
+		//AddComponent(ani);
+		//Camera::SetTarget(this);
+
+		mDir += Vector2(0.0f, -1.0f);
 	}
 
 	Missile::~Missile()
 	{
+
 	}
 
 	void Missile::Tick()
 	{
 		GameObject::Tick();
-
 		mAliveTime -= Time::DeltaTime();
 		if (mAliveTime <= 0.0f)
 		{
 			this->Death();
 		}
 
-		float radian = DegreeToRadian(90.0f);
-		float degree = RadianToDegree(2 * PI);
-
-		float speed = 100.0f;
+		float radian = math::DegreeToRadian(90.0f);
+		float degree = math::RadianToDegree(2 * PI);
+		float speed = 200.0f;
 
 		Vector2 pos = GetPos();
-		//pos.y -= 500.0f * Time::DeltaTime(); 
-		//pos.y -= Time::DeltaTime();
 
 		// 삼각함수를 이용한 회전
 		//mDir = PI / 2.0f;
 		//pos.x += speed * cosf(mDir) * Time::DeltaTime();
 		//pos.y -= speed * sinf(mDir) * Time::DeltaTime();
+		//Vector2 mousPos = Input::GetMousePos();
 
+		//mDir.Normailize();
 
 		// 벡터를 이용한 회전
 		pos.y += mDir.y * speed * Time::DeltaTime();
@@ -74,11 +75,24 @@ namespace k
 
 	void Missile::Render(HDC hdc)
 	{
-		/*Vector2 pos = GetPos();
+		Vector2 pos = GetPos();
 		Vector2 scale = GetScale();
+
+		//Vector2 finalPos;
+		//finalPos.x = (pos.x - mImage->GetWidth() * (scale.x / 0.0f));
+		//finalPos.y = (pos.y - mImage->GetHeight() * (scale.y / 2.0f));
+
+		Vector2 rect;
+		rect.x = mImage->GetWidth(); //*scale.x;
+		rect.y = mImage->GetHeight(); //*scale.y;
+
 		pos = Camera::CalculatePos(pos);
 
-		Ellipse(hdc, pos.x - 10, pos.y - 10, pos.x + scale.x, pos.y + scale.y);*/
+		TransparentBlt(hdc, pos.x, pos.y, rect.x, rect.y
+			, mImage->GetDC(), 0, 0, mImage->GetWidth(), mImage->GetHeight()
+			, RGB(255, 0, 255));
+
+		GameObject::Render(hdc);
 
 		GameObject::Render(hdc);
 	}

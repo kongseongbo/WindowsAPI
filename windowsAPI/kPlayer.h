@@ -20,11 +20,19 @@ namespace k
 
 		void WalkComplete();
 
+		void SetHp(int hp) { mHp = hp; }
+		int GetHp() { return mHp; }
+
 	private:
 		float mCoff;
 		float mSpeed;
 		Image* mImage;
 		Animator* mAnimator;
+		Vector2 mMisiileDir;
+
+		int mHp;
+		int skillstack;
+		float skillTime;
 	};
 }
 

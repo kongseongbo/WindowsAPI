@@ -152,4 +152,11 @@ namespace k
 
 		return false;
 	}
+
+	//Scene이 바뀔때 초기화
+	void CollisionManager::Clear()
+	{
+		memset(mMatrix, 0, sizeof(WORD) * _COLLIDER_LAYER);
+		mCollisionInformation.clear();
+	}
 }

@@ -3,16 +3,18 @@
 #include "kTitleScene.h"
 #include "kPlayScene.h"
 #include "kEndScene.h"
-#include "kObjcet.h"
+#include "kToolScene.h"
+#include "kObject.h"
 
 namespace k
 {
 	Scene* SceneManager::mScenes[(UINT)eSceneType::Max] = {};
 	Scene* SceneManager::mPlayScene = nullptr; // 현재 화면에 나오고 있는 씬
+	eSceneType SceneManager::mType = eSceneType::Max;
 
 	void SceneManager::Initialize()
 	{
-		//모든 씬들을 초기화
+		//모든 씬생성
 		mScenes[(UINT)eSceneType::Logo] = new LogoScene();
 		mScenes[(UINT)eSceneType::Logo]->Initialize();
 		

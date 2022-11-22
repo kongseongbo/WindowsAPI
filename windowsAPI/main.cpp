@@ -31,7 +31,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     // 메모리 누수를 체크해주는 함수
     _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
-    //_CrtSetBreakAlloc(229);
+    //_CrtSetBreakAlloc(264);
 
     // 1. wndclass 정의 윈도의 기반(여러가지 속성)이 되는 클래스 정의해준다.
 
@@ -46,7 +46,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     // 메모리를 관리하고 실행시키는 KERNEL 커널 
     // 유저 인터페이스와 과리하는 USER
     // 화면처리와 그래픽을 담당하는 GDI 로 이루어져있다.
-
 
     // 
     // 전역 문자열을 초기화합니다.
@@ -154,8 +153,8 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
     hInst = hInstance; // 인스턴스 핸들을 전역 변수에 저장합니다.
 
     WindowData windowData;
-    windowData.width = 1600;
-    windowData.height = 900;
+    windowData.width = 1920;
+    windowData.height = 1080;
 
     HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
         CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);

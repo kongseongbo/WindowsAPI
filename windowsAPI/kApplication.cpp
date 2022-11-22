@@ -1,3 +1,7 @@
+#include <Windows.h>
+#include "framework.h"
+#include "WindowsAPI.h"
+
 #include "kApplication.h"
 #include "kSceneManager.h"
 #include "kTime.h"
@@ -5,6 +9,7 @@
 #include "kResources.h"
 #include "kCollisionManager.h"
 #include "kCamera.h"
+#include "kUIManager.h"
 
 
 namespace k
@@ -16,8 +21,16 @@ namespace k
 
 		Time::Initialize();
 		Input::Initialize();
+		UIManager::Initialize();
 		SceneManager::Initialize();
 		Camera::Initialize();
+	}
+
+
+	void Application::initializeAtlasWindow(WindowData data)
+	{
+		mAtlasWindowData = data;
+		mAtlasWindowData.hdc = GetDC(data.hWnd);
 	}
 
 	void Application::Tick()
@@ -25,9 +38,10 @@ namespace k
 		Time::Tick();
 		Input::Tick();
 
-		Camera::Tick();
 		SceneManager::Tick();
 		CollisionManager::Tick();
+		UIManager::Tick();
+		Camera::Tick();
 
 		// clear
 		//Brush brush(mWindowData.backBuffer, mBrushes[(UINT)eBrushColor::Gray]);
@@ -37,6 +51,7 @@ namespace k
 		SelectObject(mWindowData.backBuffer, hPrevBrush);
 
 		SceneManager::Render(mWindowData.backBuffer);
+		UIManager::Render(mWindowData.backBuffer);
 		Camera::Render(mWindowData.backBuffer);
 		Input::Render(mWindowData.backBuffer);
 		Time::Render(mWindowData.backBuffer);
@@ -51,6 +66,29 @@ namespace k
 		SceneManager::DestroyGameObject();
 	}
 
+	//윈도우 메뉴바 스위치
+	void Application::SetMenuBar(bool power)
+	{
+		SetMenu(mWindowData.hWnd, mMenu);
+
+		RECT rect = { 0,0,mWindowData.width,mWindowData.height };
+		AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, power);
+
+		//윈도우 크기 변경
+		SetWindowPos(mWindowData.hWnd
+			, nullptr, 0, 0
+			, rect.right - rect.left
+			, rect.bottom - rect.top
+			, 0);
+
+		ShowWindow(mWindowData.hWnd, true);
+	}
+
+	eSceneType Application::GetPlaySceneType()
+	{
+		return SceneManager::GetPlaySceneType();
+	}
+
 	Application::Application()
 	{
 		mWindowData.clear();
@@ -60,6 +98,7 @@ namespace k
 	{
 		SceneManager::Release();
 		Resources::Release();
+		UIManager::Release();
 
 		ReleaseDC(mWindowData.hWnd, mWindowData.hdc);
 		ReleaseDC(mWindowData.hWnd, mWindowData.backBuffer);
@@ -105,5 +144,7 @@ namespace k
 		mBrushes[(UINT)eBrushColor::Gray] = (HBRUSH)GetStockObject(GRAY_BRUSH);
 		mBrushes[(UINT)eBrushColor::White] = (HBRUSH)GetStockObject(WHITE_BRUSH);
 
+
+		mMenu = LoadMenu(nullptr, MAKEINTRESOURCEW(IDC_WINDOWSAPI));
 	}
 }

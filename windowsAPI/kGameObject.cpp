@@ -1,5 +1,6 @@
 #include "kGameObject.h"
 #include "kTime.h"
+
 namespace k
 {
 	GameObject::GameObject()
@@ -13,7 +14,7 @@ namespace k
 	}
 
 	GameObject::GameObject(Vector2 position)
-		: mPos{position}
+		: mPos(position)
 		, mScale{ 1.0f, 1.0f }
 		, mDead(false)
 		, mDeathTime(-100.0f)
@@ -40,7 +41,7 @@ namespace k
 	}
 
 	void GameObject::Tick()
-	{	
+	{
 		DeathLoop();
 
 		// 모든 컴포넌트를 Tick 호출

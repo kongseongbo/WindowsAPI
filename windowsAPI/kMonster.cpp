@@ -25,7 +25,7 @@ namespace k
 			mImage = Resources::Load<Image>(L"Monster", L"..\\Resources\\Image\\Monster.bmp");
 		}
 
-		AddComponent(new Animator());
+		//AddComponent(new Animator());
 		AddComponent(new Collider());
 	}
 
@@ -41,7 +41,7 @@ namespace k
 			mImage = Resources::Load<Image>(L"Monster", L"..\\Resources\\Image\\Monster.bmp");
 		}
 
-		AddComponent(new Animator());
+		//AddComponent(new Animator());
 		AddComponent(new Collider());
 	}
 

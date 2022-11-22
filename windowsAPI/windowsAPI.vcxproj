@@ -31,6 +31,7 @@
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
+    <EnableUnitySupport>true</EnableUnitySupport>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -38,12 +39,14 @@
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
+    <EnableUnitySupport>true</EnableUnitySupport>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
+    <EnableUnitySupport>true</EnableUnitySupport>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -51,6 +54,7 @@
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
+    <EnableUnitySupport>true</EnableUnitySupport>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -104,6 +108,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -134,6 +139,7 @@
     <ClInclude Include="kAnimator.h" />
     <ClInclude Include="kBackPack.h" />
     <ClInclude Include="kBgImageObject.h" />
+    <ClInclude Include="kButton.h" />
     <ClInclude Include="kCamera.h" />
     <ClInclude Include="kCollider.h" />
     <ClInclude Include="kCollisionManager.h" />
@@ -142,22 +148,32 @@
     <ClInclude Include="kGameObject.h" />
     <ClInclude Include="kApplication.h" />
     <ClInclude Include="kEntity.h" />
+    <ClInclude Include="kGround.h" />
+    <ClInclude Include="kHUD.h" />
     <ClInclude Include="kImage.h" />
     <ClInclude Include="kInput.h" />
     <ClInclude Include="kLogoScene.h" />
+    <ClInclude Include="kMap.h" />
     <ClInclude Include="kMissile.h" />
     <ClInclude Include="kMonster.h" />
-    <ClInclude Include="kObjcet.h" />
+    <ClInclude Include="kMushroom.h" />
+    <ClInclude Include="kObject.h" />
     <ClInclude Include="kObstacle.h" />
     <ClInclude Include="kObstacleManager.h" />
+    <ClInclude Include="kPanel.h" />
     <ClInclude Include="kPlayer.h" />
     <ClInclude Include="kPlayScene.h" />
     <ClInclude Include="kResource.h" />
     <ClInclude Include="kResources.h" />
+    <ClInclude Include="kRigidbody.h" />
     <ClInclude Include="kScene.h" />
     <ClInclude Include="kSceneManager.h" />
+    <ClInclude Include="kSound.h" />
+    <ClInclude Include="kSoundManager.h" />
     <ClInclude Include="kTime.h" />
     <ClInclude Include="kTitleScene.h" />
+    <ClInclude Include="kUiBase.h" />
+    <ClInclude Include="kUIManager.h" />
     <ClInclude Include="Maths.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="targetver.h" />
@@ -168,6 +184,7 @@
     <ClCompile Include="kAnimator.cpp" />
     <ClCompile Include="kBackPack.cpp" />
     <ClCompile Include="kBgImageObject.cpp" />
+    <ClCompile Include="kButton.cpp" />
     <ClCompile Include="kCamera.cpp" />
     <ClCompile Include="kCollider.cpp" />
     <ClCompile Include="kCollisionManager.cpp" />
@@ -176,21 +193,31 @@
     <ClCompile Include="kGameObject.cpp" />
     <ClCompile Include="kApplication.cpp" />
     <ClCompile Include="kEntity.cpp" />
+    <ClCompile Include="kGround.cpp" />
+    <ClCompile Include="kHUD.cpp" />
     <ClCompile Include="kImage.cpp" />
     <ClCompile Include="kInput.cpp" />
     <ClCompile Include="kLogoScene.cpp" />
+    <ClCompile Include="kMap.cpp" />
     <ClCompile Include="kMissile.cpp" />
     <ClCompile Include="kMonster.cpp" />
+    <ClCompile Include="kMushroom.cpp" />
     <ClCompile Include="kObstacle.cpp" />
     <ClCompile Include="kObstacleManager.cpp" />
+    <ClCompile Include="kPanel.cpp" />
     <ClCompile Include="kPlayer.cpp" />
     <ClCompile Include="kPlayScene.cpp" />
     <ClCompile Include="kResource.cpp" />
     <ClCompile Include="kResources.cpp" />
+    <ClCompile Include="kRigidbody.cpp" />
     <ClCompile Include="kScene.cpp" />
     <ClCompile Include="kSceneManager.cpp" />
+    <ClCompile Include="kSound.cpp" />
+    <ClCompile Include="kSoundManager.cpp" />
     <ClCompile Include="kTime.cpp" />
     <ClCompile Include="kTitleScene.cpp" />
+    <ClCompile Include="kUiBase.cpp" />
+    <ClCompile Include="kUIManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Maths.cpp" />
   </ItemGroup>

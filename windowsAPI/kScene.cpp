@@ -1,6 +1,7 @@
 #include "kScene.h"
 #include "kGameObject.h"
 #include "kSceneManager.h"
+#include "kCollisionManager.h"
 namespace k
 {
 	Scene::Scene()
@@ -68,10 +69,13 @@ namespace k
 
 	void Scene::Enter()
 	{
+
 	}
 
 	void Scene::Exit()
 	{
+		//충돌정보 삭제
+		CollisionManager::Clear();
 	}
 
 	void Scene::AddGameObject(GameObject* object, eColliderLayer type)
